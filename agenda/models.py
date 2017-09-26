@@ -8,8 +8,6 @@ class Usuario(models.Model):
     datanascimento = models.DateField()
     email = models.EmailField(max_length=254)
 
-class Agenda_Institucional(models.Model):
-    nome_empresa=models.TextField()
 
 
 class Agenda(models.Model):
@@ -22,13 +20,15 @@ class Agenda(models.Model):
     )
     visivel=models.CharField(max_length=2,choices=TIPO_DE_AGENDA,default=PRIVADA)
     user = models.ForeignKey(Usuario)
+    share_with = models.ForeignKey(Usuario,related_name = u'fk_agendacompartilhada')
+    instiutucial = models.BooleanField()
 
 
 
 class Compromisso(models.Model):
-    agenda=models.ForeignKey(Agenda,related_name=u'fk_agenda_compromissos')
-    institucinal=models.ForeignKey(Agenda_Institucional,related_name=u'fk_institucional_compromissos')
+    agenda = models.ForeignKey(Agenda,related_name=u'fk_agenda_compromissos')
     data = models.DateField()
     descricao = models.TextField()
+
 
 
