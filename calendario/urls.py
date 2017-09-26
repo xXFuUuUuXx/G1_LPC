@@ -16,11 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from agenda.views import agendas, institucional, get_agenda_ID
+from agenda.views import agendas, get_agenda_ID
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^agendas/',agendas, name ='AGENDAS'),
-    url(r'^institucional/', institucional , name='INSTITUCIONAL'),
     url(r'agendas/usuario/(?P<id>[0-9]){1}/',get_agenda_ID),
 ]
